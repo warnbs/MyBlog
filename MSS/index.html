@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<!-- Google Fonts: Fraunces (warm, personable serif for headlines) + Work Sans (clean body sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="frame" id="frame">
+
+  <!-- ============================================
+       1. HERO
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="heart-field" id="heartField" aria-hidden="true"></div>
+
+    <span>
+      <span class="hero-eyebrow-word">Still</span>
+      <span class="hero-eyebrow-word">falling</span>
+    </span>
+
+    <!-- EDIT: YOUR CONTENT HERE — swap the headline for whatever line feels like you two -->
+    <h1>for the only one<br>I will never stop<br>showing up for.</h1>
+
+    <!-- EDIT: YOUR CONTENT HERE — replace with your two names -->
+    <p class="names">Sae &amp; Wan</p>
+
+    <!-- EDIT: YOUR CONTENT HERE — a one-line subheading -->
+    <p class="sub">A little corner of the internet, just for you. I love you bal.</p>
+
+    <div class="scroll-hint" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============================================
+       2. PHOTO GALLERY / SCRAPBOOK
+       ============================================ -->
+  <section class="reveal" id="gallery">
+    <h2 class="section-title">Our little archive</h2>
+    <p class="section-kicker">some favorites, in no particular order</p>
+
+    <div class="gallery-strip">
+      <figure class="polaroid">
+        <!-- EDIT: replace src with your photo URL -->
+        <img src="" alt="Placeholder photo 1 — replace with your own image" loading="lazy">
+        <!-- EDIT: YOUR CONTENT HERE -->
+        <figcaption>the trip we almost cancelled</figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <!-- EDIT: replace src with your photo URL -->
+        <img src="" alt="Placeholder photo 2 — replace with your own image" loading="lazy">
+        <!-- EDIT: YOUR CONTENT HERE -->
+        <figcaption>your terrible, wonderful pancakes</figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <!-- EDIT: replace src with your photo URL -->
+        <img src="" alt="Placeholder photo 3 — replace with your own image" loading="lazy">
+        <!-- EDIT: YOUR CONTENT HERE -->
+        <figcaption>the couch, a sunday, nothing planned</figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <!-- EDIT: replace src with your photo URL -->
+        <img src="" alt="Placeholder photo 4 — replace with your own image" loading="lazy">
+        <!-- EDIT: YOUR CONTENT HERE -->
+        <figcaption>that concert we drove too far for</figcaption>
+      </figure>
+    </div>
+    <div class="gallery-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- ============================================
+       3. REASONS I LOVE YOU — flip cards
+       ============================================ -->
+  <section class="reveal" id="reasons">
+    <h2 class="section-title">A few reasons</h2>
+    <p class="section-kicker">tap a card to see the back</p>
+
+    <div class="reasons-grid">
+      <!-- EDIT: YOUR CONTENT HERE — each card front/back below -->
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">Your laugh</div>
+          <div class="flip-face flip-back">It's loud, unguarded, and I plan bad jokes just to hear it.</div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">How you remember</div>
+          <div class="flip-face flip-back">You hold onto the small details of my day that I forget I told you.</div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">Your stubbornness</div>
+          <div class="flip-face flip-back">You fight for what you believe in, including me, on my worst days.</div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">Quiet mornings</div>
+          <div class="flip-face flip-back">You make even the boring parts of life feel worth showing up for.</div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">Your softness</div>
+          <div class="flip-face flip-back">You care hard, even when it's inconvenient, even when it costs you.</div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-label="Reveal reason">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">Simply, you</div>
+          <div class="flip-face flip-back">However I try to explain it, it always comes back to just — you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       4. LOVE LETTER
+       ============================================ -->
+  <section class="reveal letter-section" id="letter">
+    <h2 class="section-title">One more thing</h2>
+    <p class="section-kicker">a letter, for when you have a quiet minute</p>
+
+    <button class="letter-open-btn" id="letterBtn" type="button">Open the letter</button>
+
+    <div class="parchment" id="parchment">
+      <div class="parchment-card">
+        <!-- EDIT: YOUR CONTENT HERE — the whole letter below is a placeholder -->
+        <p class="salutation">My dearest [Her Name],</p>
+        <div class="letter-body">
+          <p>I wanted to write down the things I don't always say out loud — not because I don't feel them, but because you make it easy to forget to say them.</p>
+          <p>Thank you for the ordinary days. For choosing me on the hard ones. For being exactly, unmistakably yourself, and letting me love every part of it.</p>
+          <p>Here's to another year of us — the good mornings, the bad jokes, and everything in between.</p>
+        </div>
+        <p class="signature">Yours, always</p>
+        <p class="letter-date">[Date]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       5. CLOSING
+       ============================================ -->
+  <section class="reveal closing" id="closing">
+    <h2 class="section-title">That's all for now</h2>
+    <p>tap below if you're feeling it too</p>
+    <button class="send-love-btn" id="sendLoveBtn" type="button">send some love</button>
+  </section>
+
+  <p class="footer-mark">made with love, for you.</p>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

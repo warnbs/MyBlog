@@ -1,0 +1,447 @@
+/* ============================================
+     TOKENS
+     ============================================ */
+  :root{
+    --cream:      #FBF3EE;
+    --paper:      #FAF5E9;
+    --blush:      #F1C9C4;
+    --rose:       #D98D8F;
+    --wine:       #7A3140;
+    --wine-deep:  #5C2430;
+    --gold:       #C7A166;
+    --ink:        #4A3A3B;
+    --ink-soft:   #8A7574;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+
+    --dur: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    :root{ --dur: 0; }
+    *, *::before, *::after{
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    margin: 0;
+    background: #E9DCD6;
+    font-family: var(--font-body);
+    color: var(--ink);
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+
+  /* Center the mobile frame on wider (desktop) viewports */
+  .frame{
+    max-width: 430px;
+    margin: 0 auto;
+    background: var(--cream);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    box-shadow: 0 0 60px rgba(90, 40, 40, 0.15);
+  }
+
+  section{
+    padding: 3.2rem 1.5rem;
+    position: relative;
+  }
+
+  h1, h2, h3{
+    font-family: var(--font-display);
+    margin: 0;
+    color: var(--wine-deep);
+    font-weight: 600;
+  }
+
+  p{
+    line-height: 1.65;
+    margin: 0 0 0.9em 0;
+  }
+
+  button{
+    font-family: var(--font-body);
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  .flip-card:focus-visible{
+    outline: 2px solid var(--wine);
+    outline-offset: 3px;
+  }
+
+  /* Entrance reveal — one quiet fade+rise per section, triggered once on scroll into view */
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in-view{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================
+     AMBIENT FLOATING HEARTS (hero background)
+     ============================================ */
+  .heart-field{
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .drift-heart{
+    position: absolute;
+    bottom: -20px;
+    font-size: 14px;
+    color: var(--rose);
+    opacity: 0.55;
+    animation-name: drift-up;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+  }
+  @keyframes drift-up{
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.55; }
+    100% { transform: translateY(-420px) translateX(var(--drift-x, 20px)) rotate(25deg); opacity: 0; }
+  }
+
+  /* Burst hearts, spawned on tap of the "send love" button */
+  .burst-heart{
+    position: fixed;
+    pointer-events: none;
+    font-size: 16px;
+    color: var(--wine);
+    animation: burst-fly 1100ms ease-out forwards;
+    z-index: 50;
+  }
+  @keyframes burst-fly{
+    0%   { transform: translate(0,0) scale(0.6); opacity: 1; }
+    100% { transform: translate(var(--bx), var(--by)) scale(1.1); opacity: 0; }
+  }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero{
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      radial-gradient(circle at 30% 20%, var(--blush) 0%, transparent 55%),
+      radial-gradient(circle at 80% 75%, #F6E2DA 0%, transparent 50%),
+      var(--cream);
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-eyebrow-word{
+    display: inline-block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--rose);
+    opacity: 0;
+    animation: word-fade 0.8s ease forwards;
+  }
+  .hero-eyebrow-word:nth-child(1){ animation-delay: 0.15s; }
+  .hero-eyebrow-word:nth-child(2){ animation-delay: 0.45s; }
+  @keyframes word-fade{
+    from{ opacity: 0; transform: translateY(8px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1{
+    font-size: 2.6rem;
+    line-height: 1.12;
+    margin: 0.6rem 0 1rem;
+    opacity: 0;
+    animation: word-fade 0.9s ease forwards;
+    animation-delay: 0.7s;
+  }
+
+  .hero .names{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--wine);
+    opacity: 0;
+    animation: word-fade 0.9s ease forwards;
+    animation-delay: 1.05s;
+  }
+
+  .hero .sub{
+    max-width: 30ch;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    margin-top: 0.9rem;
+    opacity: 0;
+    animation: word-fade 0.9s ease forwards;
+    animation-delay: 1.3s;
+  }
+
+  .scroll-hint{
+    margin-top: 2.2rem;
+    width: 1px;
+    height: 34px;
+    background: var(--rose);
+    opacity: 0;
+    animation: word-fade 0.9s ease forwards, hint-grow 1.8s ease-in-out infinite;
+    animation-delay: 1.6s, 2.4s;
+  }
+  @keyframes hint-grow{
+    0%, 100% { transform: scaleY(0.6); opacity: 0.4; }
+    50%      { transform: scaleY(1); opacity: 0.9; }
+  }
+
+  /* ============================================
+     SECTION HEADINGS (shared)
+     ============================================ */
+  .section-title{
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+  .section-kicker{
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--rose);
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  /* ============================================
+     GALLERY — polaroid scroll-snap strip
+     ============================================ */
+  .gallery-strip{
+    display: flex;
+    gap: 1.1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 1.4rem 1.6rem;
+    margin: 0 -1.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery-strip::-webkit-scrollbar{ display: none; }
+
+  .polaroid{
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    width: 220px;
+    background: #fff;
+    padding: 0.8rem 0.8rem 1.2rem;
+    box-shadow: 0 10px 24px rgba(90, 40, 40, 0.18);
+    border-radius: 2px;
+  }
+  .polaroid:nth-child(odd){ transform: rotate(-3deg); }
+  .polaroid:nth-child(even){ transform: rotate(2.5deg); }
+
+  .polaroid img{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, var(--blush), #F6E2DA);
+  }
+  .polaroid figcaption{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.92rem;
+    text-align: center;
+    color: var(--ink-soft);
+    padding-top: 0.7rem;
+  }
+
+  .gallery-dots{
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 0.4rem;
+  }
+  .gallery-dots span{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blush);
+  }
+
+  /* ============================================
+     REASONS — flip cards
+     ============================================ */
+  .reasons-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+
+  .flip-card{
+    perspective: 900px;
+    height: 148px;
+  }
+  .flip-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner{
+    transform: rotateY(180deg);
+  }
+  .flip-face{
+    position: absolute;
+    inset: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.9rem;
+  }
+  .flip-front{
+    background: var(--blush);
+    color: var(--wine-deep);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+  .flip-back{
+    background: var(--wine);
+    color: var(--cream);
+    transform: rotateY(180deg);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .flip-hint{
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 1rem;
+  }
+
+  /* ============================================
+     LOVE LETTER
+     ============================================ */
+  .letter-section{
+    background: linear-gradient(180deg, var(--cream), #F3E6DD);
+  }
+
+  .letter-open-btn{
+    display: block;
+    margin: 0 auto;
+    background: var(--wine);
+    color: var(--cream);
+    padding: 0.85rem 1.8rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 20px rgba(122, 49, 64, 0.3);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .letter-open-btn:active{ transform: scale(0.96); }
+
+  .letter-open-btn.is-hidden{
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .parchment{
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.9s ease, opacity 0.7s ease, margin 0.7s ease;
+    margin-top: 0;
+  }
+  .parchment.open{
+    max-height: 900px;
+    opacity: 1;
+    margin-top: 1.6rem;
+  }
+
+  .parchment-card{
+    background: var(--paper);
+    border: 1px solid #E7D8C4;
+    border-radius: 4px;
+    padding: 2rem 1.6rem;
+    box-shadow: 0 14px 30px rgba(90, 40, 40, 0.14);
+    font-family: var(--font-display);
+  }
+  .parchment-card .salutation{
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--wine-deep);
+    margin-bottom: 1rem;
+  }
+  .parchment-card .letter-body{
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+  .parchment-card .signature{
+    margin-top: 1.4rem;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--wine);
+    text-align: right;
+  }
+  .parchment-card .letter-date{
+    text-align: right;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.2rem;
+  }
+
+  /* ============================================
+     CLOSING / SEND LOVE
+     ============================================ */
+  .closing{
+    text-align: center;
+    padding-bottom: 4.5rem;
+  }
+  .closing p{
+    color: var(--ink-soft);
+    max-width: 28ch;
+    margin: 0.6rem auto 1.6rem;
+  }
+  .send-love-btn{
+    background: var(--blush);
+    color: var(--wine-deep);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    padding: 0.9rem 2rem;
+    border-radius: 999px;
+    transition: transform 0.25s ease;
+  }
+  .send-love-btn:active{ transform: scale(0.94); }
+
+  .footer-mark{
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    padding-bottom: 2rem;
+  }
