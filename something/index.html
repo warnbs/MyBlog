@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Letter</title>
+
+  <!-- Elegant, Formal Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page-container">
+    <!-- Envelope Stage -->
+    <div id="envelope-stage" class="stage active">
+      <p class="envelope-instruction">Click the seal to read</p>
+      
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-letter-insert"></div>
+        <div class="envelope-left"></div>
+        <div class="envelope-right"></div>
+        <div class="envelope-bottom"></div>
+        <div class="envelope-flap" id="envelope-flap"></div>
+        <button class="wax-seal" id="seal-btn" aria-label="Open Letter">
+          <span class="seal-mark">J</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Letter Stage -->
+    <div id="letter-stage" class="stage hidden">
+      <article class="letter-document">
+        <header class="letter-header">
+          <p class="letter-date">September 28, 2026</p>
+          <h1 class="letter-salutation">Dear [Name],</h1>
+        </header>
+
+        <section class="letter-body">
+          <p>
+            I am writing this to share thoughts that deserve clear, thoughtful expression rather than an interrupted conversation. Over the time we have spent together, I have come to value everything we built and the experiences we shared, but I have also had to reflect honestly on where we are headed.
+          </p>
+
+          <p>
+            It has become evident to me that our paths, priorities, and what we need for our individual growth are diverging. While this is not an easy realization to face, I believe holding on to something that no longer serves either of us will only lead to resentment and quiet distance.
+          </p>
+
+          <p>
+            I want to thank you sincerely for the time, care, and memories you gave to me. I hold no bitterness, and my decision comes from a place of respect for both of us and the truth of what we need moving forward.
+          </p>
+
+          <p>
+            I genuinely wish you peace, clarity, and fulfillment in everything that lies ahead.
+          </p>
+        </section>
+
+        <footer class="letter-footer">
+          <p class="valediction">With respect,</p>
+          <p class="signature">Juan</p>
+        </footer>
+      </article>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
